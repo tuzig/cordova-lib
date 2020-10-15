@@ -54,11 +54,13 @@ Context.prototype.requireCordovaModule = function (modulePath) {
     const [pkg, ...pkgPath] = modulePath.split('/');
 
     if (!pkg.match(/^cordova-[^/]+/)) {
-        throw new CordovaError(
-            'Using "requireCordovaModule" to load non-cordova module ' +
-            `"${modulePath}" is not supported. Instead, add this module to ` +
-            'your dependencies and use regular "require" to load it.'
+
+        console.log('Warrning: ' +
+            '
+            `Skipping Installation of "${modulePath}" as it's name does not` +
+            ' start with "cordova-"'
         );
+        return null;
     }
 
     // We can only resolve `cordova-lib` by name if this module is installed as
